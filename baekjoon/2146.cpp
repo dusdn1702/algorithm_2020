@@ -60,10 +60,10 @@ int answer = 0;
 void solution() {
     for (int k = 1; k < cnt; k++) {
         for(int l =k+1;l<=cnt;l++){
-            for(int i=0;i)
+            //for(int i=0;i)
             if(v[k].second.first-v[l].second.first)
             //vector에서 서로 다른 섬끼리 하나하나 비교하려 했으나 실패..
-            answer = min(abs(v[k].second.first-v[l].second.first)+abs(v[k].second.second-v[l].second.second))
+            //answer = min(abs(v[k].second.first-v[l].second.first)+abs(v[k].second.second-v[l].second.second))
         }
     }
 }
