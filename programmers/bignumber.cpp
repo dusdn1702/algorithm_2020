@@ -41,3 +41,35 @@ string solution(string number, int k) {
     }
     return answer;
 }
+
+//2차
+//이중포문 돌려가며 진행
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <deque>
+#include <iostream>
+using namespace std;
+deque<int> deq;
+string solution(string number, int k) {
+    string answer = "";
+    
+    int makeNumber = number.size() - k;
+    int checkNumIndex = 0;
+    int maxNumIndex = 0;
+    char maxNum;
+    
+    for(int i=0;i<makeNumber;i++){
+        maxNum = number[checkNumIndex];
+        maxNumIndex = checkNumIndex;
+        for(int j=checkNumIndex;j<=k+i;j++){
+            if(maxNum < number[j]){
+                maxNum = number[j];
+                maxNumIndex = j;
+            }
+        }
+        checkNumIndex = maxNumIndex + 1;
+        answer += maxNum;
+    }
+    return answer;
+}
