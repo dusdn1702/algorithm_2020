@@ -1,6 +1,10 @@
+//다리만들기 bfs
+//단지 나누기까진 ok
+//최단다리 하나 짓기 실패...
+
 #include <algorithm>
 #include <iostream>
-#include <queue>
+#include <queue> 
 #include <vector>
 using namespace std;
 
@@ -61,7 +65,7 @@ void solution() {
     for (int k = 1; k < cnt; k++) {
         for(int l =k+1;l<=cnt;l++){
             //for(int i=0;i)
-            if(v[k].second.first-v[l].second.first)
+            if(v[k].second.first-v[l].second.first){}
             //vector에서 서로 다른 섬끼리 하나하나 비교하려 했으나 실패..
             //answer = min(abs(v[k].second.first-v[l].second.first)+abs(v[k].second.second-v[l].second.second))
         }

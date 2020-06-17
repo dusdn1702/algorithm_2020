@@ -1,3 +1,5 @@
+//퇴사
+//최대한 많은 이익을 구해야하는 것 주의
 #include <iostream>
 #include <string>
 #include <algorithm>
