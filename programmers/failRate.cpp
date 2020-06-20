@@ -6,6 +6,7 @@
 //또, sort의 마지막 인자 기본생성자는 less 이고 오름차순 43210 이다.
 //이거때문에 또 한참 헤맸다.
 //greater가 내림차순 01234 이다
+//괜히 복잡하게 생각 말고 라이브러리 쓰자..
 
 #include <algorithm>
 #include <queue>
