@@ -28,7 +28,8 @@ string solution(string s) {
 //그냥 구현
 string solution(string s) {
     string answer = "";
-    char tmp for (int i = 0; i < s.size(); i++) {
+    char tmp;
+     for (int i = 0; i < s.size(); i++) {
         for (int j = i; j < s.size(); j++) {
             if (s[i] < s[j]) {
                 tmp = s[i];
