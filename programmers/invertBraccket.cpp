@@ -13,23 +13,27 @@ string solution(string s) {
     int openCount = 0;
     int closeCount = 0;
     string tmp;
-    if (s[0] == ')') {
+    if (s[0] == ')') {  //시작이 )면 나중의 (랑 위치 바꾸어야 함
         tmp[0] = '(';
         for (int i = 0; i < s.size(); i++) {
             tmp.append(1, s[i + 1]);
             if (s[i] != '(') {
-                tmp.append(1,')');
-                tmp.append(s.size()-i, s.substr(i+1));
+                tmp.append(")");
+                tmp.append(s.substr(i + 1));
                 break;
             }
         }
     }
     for (int i = 0; i < s.size(); i++) {
-        if (s[i] == '(')
+        if (s[i] == '(') {
             openCount++;
-        else if (s[i] == ')')
+        } else if (s[i] == ')') {
             closeCount++;
-        if (closeCount > openCount) {
+        }
+        if (closeCount > openCount) {  // 가다가 )가 많아지면
+            tmp = "("+s.substr(i);//////////////이거 재귀 해야해요
+        } else {
+            tmp.append(to_string(s[i]));
         }
     }
     if (closeCount != openCount) return false;
