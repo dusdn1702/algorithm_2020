@@ -25,7 +25,7 @@ int solution(int n) {
     }
     return answer;
 }
-
+/*
 //배수이면 0을 주고 0아닌 거 찾는 방식
 int solution(int n) {
     int answer = 0;
@@ -45,3 +45,4 @@ int solution(int n) {
     }
     return answer;
 }
+*/
