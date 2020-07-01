@@ -1,7 +1,14 @@
-//뉴스 클러스터링 - 카카오 2018
+//뉴스 클러스터링 - 카카오 2018  
+//<https://programmers.co.kr/learn/courses/30/lessons/17677>  
+//생각은 단순했는데 새로 배운게 많았던 문제였다.  
+//- 대소문자를 가리지 않고 비교하므로 tmp[0]=toupper(tmp[0])으로 모두 대문자를 만들어준 부분  
+//- 소수점을 다루는 부분에서 소수 뒷자리를 버리고 계산할 때 (int)0.1-0.05 하면 앞에꺼만 int가 씌워진다는 부분  
+//- 계산을 할때는 캐스팅이 꼭 필요한 부분들이 있었다.  
+//더 간단히 풀 수 있었지만 지금 이거를 더 단단히 익히는게 중요한 것 같다.  
+
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 using namespace std;
 
 int solution(string str1, string str2) {
@@ -11,47 +18,47 @@ int solution(string str1, string str2) {
     string tmp = "";
     for (int i = 0; i < str1.size(); i++) {
         tmp = str1.substr(i, 2);
-        group1.push_back(tmp);
+        tmp[0] = toupper(tmp[0]);
+        tmp[1] = toupper(tmp[1]);
+        if ((tmp[0] >= 'A' && tmp[0] <= 'Z') && (tmp[1] >= 'A' && tmp[1] <= 'Z')) {
+            group1.push_back(tmp);
+        }
         tmp.clear();
     }
     for (int i = 0; i < str2.size(); i++) {
         tmp = str2.substr(i, 2);
-        group2.push_back(tmp);
+        tmp[0] = toupper(tmp[0]);
+        tmp[1] = toupper(tmp[1]);
+        if ((tmp[0] >= 'A' && tmp[0] <= 'Z') && (tmp[1] >= 'A' && tmp[1] <= 'Z')) {
+            group2.push_back(tmp);
+        }
         tmp.clear();
     }
     int CNTU = 0;
     int CNTN = 0;
-    bool check = false;
-    if (group1.size() > group2.size()) {
-        for (int i = 0; i < group1.size(); i++) {
-            for (int j = 0; j < group2.size(); j++) {
-                if (group1[i] == group2[j]) {
-                    CNTU++;
-                    CNTN++;
-                    check = true;
-                    break;
-                }
+    for (int i = 0; i < group1.size(); i++) {
+        bool check = false;
+        for (int j = 0; j < group2.size(); j++) {
+            if (group1[i] == group2[j]) {
+                CNTU++;
+                CNTN++;
+                group2[j]="";
+                check = true;
+                break;
             }
-            if(!check) CNTU++;
         }
-    } else{
-        for (int i = 0; i < group2.size(); i++) {
-            for (int j = 0; j < group1.size(); j++) {
-                //if (group2[i][0] == )
-                // 소문자 대문자 나누기 필요
-                // 공백, 숫자, 특수문자 없애기 필요
-                if (group2[i] == group1[j]) {
-                    CNTU++;
-                    CNTN++;
-                    check = true;
-                    break;
-                }
-            }
-            if(!check) CNTU++;
-        }        
+        if (!check) CNTU++;
     }
-    double divideNum = CNTN/CNTU;
-    cout << CNTN << CNTU << divideNum;
-    answer = divideNum * 65536;
+    for(int i = 0; i <group2.size();i++){
+            if(group2[i]!=""){
+                CNTU++;
+            }
+    }
+    float divideNum;
+    if(CNTU==0&&CNTN==0) divideNum = 1;
+    else{
+        divideNum = (float) (CNTN / CNTU);
+    }
+    answer = (int)(divideNum * 65536);
     return answer;
 }
