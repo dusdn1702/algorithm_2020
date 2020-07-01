@@ -88,3 +88,33 @@ int solution(int cacheSize, vector<string> cities) {
     }
     return answer;
 }
+
+//답
+int solution(int cacheSize, vector<string> cities) {
+    int answer = 0;
+    vector<string> realCache;
+    set<string> finder;
+    set<string>::iterator it;
+    if (cacheSize == 0) return cities.size() * 5;
+    for (int i = 0; i < cities.size(); i++) {
+        transform(cities[i].begin(), cities[i].end(), cities[i].begin(), ::toupper);
+        if (finder.find(cities[i]) == finder.end()) {  //miss
+            if (finder.size() >= cacheSize) {
+                finder.erase(realCache.front());
+                realCache.erase(realCache.begin());
+            }
+            finder.insert(cities[i]);
+            realCache.push_back(cities[i]);
+            answer += 5;
+        } else {  //hit
+            answer += 1;
+            for(int j = 0; j <realCache.size();j++){
+                if(cities[i]==realCache[j]){
+                    realCache.erase(realCache.begin()+j);
+                    realCache.push_back(cities[i]);
+                }
+            }
+        }
+    }
+    return answer;
+}
