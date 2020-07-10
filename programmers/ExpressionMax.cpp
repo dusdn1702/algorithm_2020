@@ -1,7 +1,6 @@
 //수식 최대화 - 2020 카카오
 //아 싀발 잘못 풀었네 ㅋㅋ,,,,,
 //위치 바꾸는거 아니고 그대로에서 먼저 계산할 거 찾는거...
-
 #include <algorithm>
 #include <deque>
 #include <iostream>
@@ -58,7 +57,8 @@ long long solution(string expression) {
             }
         }
         answer = max((long long)0, abs(nowAnswer));
-
+        tmpOperators.clear();
+        tmpNumbers.clear();
     } while (next_permutation(operators.begin(), operators.end()));
 
     return answer;
